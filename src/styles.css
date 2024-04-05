@@ -1,2 +1,20 @@
-*{ margin :_ 0;
-padding: 0;}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos para el encabezado */
+  h1 {
+    color: #333;
+  }
+  
+  /* Estilos para los enlaces */
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
