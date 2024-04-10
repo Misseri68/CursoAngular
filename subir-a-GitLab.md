@@ -9,7 +9,7 @@
 2. Ve a la carpeta del proyecto que quieras subir y abre la terminal o línea de comandos en ese directorio.
 3. En la terminal, escribe `git init`.
 4. Una vez inicializado el entorno Git, utiliza `git add .` para añadir todos los archivos del proyecto.
-5. Escribe `git commit -m 'mensaje'`, utilizando comillas para rodear el mensaje.
+5. Escribe `git commit -m 'mensaje'`, utilizando comillas para rodear el mensaje. Esto es como presentar lo que quieres cambiar y subir para luego usar push y subirlo.
 6. Añade el enlace de tu repositorio de GitLab. Escribe `git remote add origin url-de-tu-repo`.
 7. Escribe `git push -u`.
    - Si te da una advertencia sobre la rama `master` o similar, utiliza `git push --set-upstream origin master`.
