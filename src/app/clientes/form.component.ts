@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { error } from 'console';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class FormComponent implements OnInit{
   public titulo: string = "Crear Cliente";
 
   public cliente: Cliente = new Cliente();
+
+  public errores: string[];
 
   constructor(private clienteService : ClienteService, private router: Router, private activatedRoute: ActivatedRoute) {}
   
@@ -41,9 +44,20 @@ export class FormComponent implements OnInit{
   }
 
   create(): void{
-    this.clienteService.create(this.cliente).subscribe( cliente=>  {
+    this.clienteService.create(this.cliente).subscribe( 
+      cliente =>  {
       this.router.navigate(['/clientes'])
       Swal.fire('Nuevo cliente', `Cliente ${this.cliente.nombre} creado con éxito `, 'success')
+    },
+    err => {
+      this.errores = err.error.errors as string[];
+      console.error("Código error  desde el backend: " + err.status)
+      let mensajeError = this.formatearArray(this.errores);
+      console.log(mensajeError)
+      Swal.fire({
+        title: 'Error al crear cliente',
+        html: mensajeError,
+      });
     }
     )
   }  
@@ -57,4 +71,15 @@ export class FormComponent implements OnInit{
     )
   }
  
+
+  formatearArray(cadenas: String[]): string {
+    let cadenaFormateada = "";
+    for (let i = 0; i < cadenas.length; i++) {
+      cadenaFormateada = cadenaFormateada.concat(cadenas[i] + '\n');
+    } 
+
+    return cadenaFormateada;
+  }
+
+
 }
