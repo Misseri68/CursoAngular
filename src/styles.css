@@ -3,6 +3,38 @@ html{
   min-height:100%;
 }
 
+#divForm{
+  margin:auto;
+  width:70%;
+}
+
+.formGroup{
+  width:100%;
+}
+
+form{
+  width:100%;
+}
+
+.cardBody{
+  border-radius: 3em;
+}
+
+.centrar{
+  display: flex;
+  justify-content: center;
+  padding:0em;
+}
+
+.botonFormulario{
+  width:50%;
+  
+}
+
+.cardBody{
+  background-color: brown;
+}
+
 body{
   margin-bottom:60px
 }

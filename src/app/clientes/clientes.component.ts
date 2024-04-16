@@ -12,17 +12,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ClientesComponent implements OnInit {
   clientes: Cliente[];
+  paginador: any;
   constructor(private clienteService: ClienteService, private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe( params => {
+      let page:number = +params.get('page');
+      if(!page){
+        page=0;
+      }
       this.clienteService
-      .getClientes().pipe(
+      .getClientes(page).pipe(
         tap(
-          clientes => {
-            this.clientes = clientes;
+          response => {
+            (response.content as Cliente[]).forEach(cliente => {
+              console.log(cliente.nombre)
+            })
           }
         )
       )
-      .subscribe();
+      .subscribe(response => {
+        this.clientes = (response.content as Cliente[])
+        this.paginador = response;
+      
+      });
+        }
+      );
   }
 
   delete(cliente: Cliente): void {
@@ -35,7 +49,7 @@ export class ClientesComponent implements OnInit {
     });
     swalWithBootstrapButtons
       .fire({
-        title: '¿Esta seguro?',
+        title: '¿Seguro?',
         text: `¿Seguro que desea borrar al usuario ${cliente.nombre} ${cliente.apellido}`,
         icon: 'warning',
         showCancelButton: true,

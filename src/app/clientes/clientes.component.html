@@ -3,7 +3,7 @@
     <div class="card-body text-primary">
       <h5 class="card-title text-white">Listado de clientes</h5>
       <div class="my-3 text left">
-        <button class="btn btn-rounded btn-success " type="button" [routerLink]="['/clientes/formulario']">Crear Cliente</button>
+        <button class="btn btn-rounded btn-success " type="button" [routerLink]="['/clientes/form']">Crear Cliente</button>
       </div>
       <div *ngIf="clientes?.length==0" class="alert alert-info" >
         No hay registros en la base de datos
@@ -36,6 +36,7 @@
             </tr>
         </tbody>
       </table>
+      <paginator-nav *ngIf="paginador" [paginador] = "paginador"></paginator-nav>
     </div>
 
   </div>
